@@ -2,10 +2,11 @@ package com.example.university.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ import java.util.Set;
 public class Course {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private int id;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
@@ -23,4 +24,7 @@ public class Course {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_teacher")
     private Teacher teacher;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+    private List<Student> students = new ArrayList<>();
 }

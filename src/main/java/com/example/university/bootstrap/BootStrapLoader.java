@@ -45,6 +45,8 @@ public class BootStrapLoader implements CommandLineRunner {
         student.getRatings().add(rating);
         student.getBooks().add(book);
         student.setTeacher(teacher);
+        student.setCourse(course);
+        course.getStudents().add(student);
 
         universityDAOService.saveStudent(student);
     }

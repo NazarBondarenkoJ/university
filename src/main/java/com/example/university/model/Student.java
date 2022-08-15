@@ -2,7 +2,6 @@ package com.example.university.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = "ratings")
+@EqualsAndHashCode(exclude = {"ratings", "course"})
 public class Student {
 
     @Id
@@ -31,4 +30,7 @@ public class Student {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_student")
     private Teacher teacher;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Course course;
 }
