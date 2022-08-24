@@ -1,6 +1,9 @@
 package com.example.university.bootstrap;
 
 import com.example.university.model.*;
+import com.example.university.model.courses.Course;
+import com.example.university.model.courses.CourseRating;
+import com.example.university.model.courses.PracticalCourse;
 import com.example.university.service.UniversityDAOService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -8,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class BootStrapLoader implements CommandLineRunner {
 
-    private final UniversityDAOService universityDAOService;
+    private final UniversityDAOService<Student> universityDAOService;
 
-    public BootStrapLoader(UniversityDAOService universityDAOService) {
+    public BootStrapLoader(UniversityDAOService<Student> universityDAOService) {
         this.universityDAOService = universityDAOService;
     }
 
@@ -23,14 +26,17 @@ public class BootStrapLoader implements CommandLineRunner {
         Book book = new Book();
         book.setTitle("Book 1");
 
-        Course course = new Course();
+        PracticalCourse course = new PracticalCourse();
         CourseRating rating = new CourseRating();
+        course.setLocation("Main Building");
         rating.setStudent(student);
         rating.setCourse(course);
         rating.setRating(5);
 
         Assistant assistant = new Assistant();
         assistant.setRole("Attorney");
+        assistant.setLastName("AssistantLastName");
+        assistant.setFirstName("AssistantFirstName");
 
         Teacher teacher = new Teacher();
         teacher.setTitle("PhD");
@@ -48,6 +54,20 @@ public class BootStrapLoader implements CommandLineRunner {
         student.setCourse(course);
         course.getStudents().add(student);
 
-        universityDAOService.saveStudent(student);
+        Diploma diploma = new Diploma();
+        diploma.setStudent(student);
+        diploma.setSubject("Imperative Programming");
+        diploma.setTopic("Python. SciPy");
+
+        CourseWork courseWork = new CourseWork();
+        courseWork.setSemester(1);
+        courseWork.setTopic("Differential equations");
+        courseWork.setSubject("Math");
+        courseWork.setStudent(student);
+
+        student.setDiploma(diploma);
+        student.setCourseWork(courseWork);
+
+        universityDAOService.save(student);
     }
 }

@@ -7,12 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = "teacher")
-public class Assistant {
-
-    @Id
-    @GeneratedValue
-    private int id;
+@EqualsAndHashCode(exclude = "teacher", callSuper = false)
+public class Assistant extends Person{
 
     private String role;
 

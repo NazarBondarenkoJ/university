@@ -1,5 +1,6 @@
-package com.example.university.model;
+package com.example.university.model.courses;
 
+import com.example.university.model.Student;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

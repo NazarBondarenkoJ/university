@@ -1,5 +1,7 @@
-package com.example.university.model;
+package com.example.university.model.courses;
 
+import com.example.university.model.Student;
+import com.example.university.model.Teacher;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "course_type", discriminatorType = DiscriminatorType.STRING)
 @Data
 @EqualsAndHashCode(exclude = {"ratings", "teacher"})
 public class Course {

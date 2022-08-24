@@ -1,5 +1,6 @@
 package com.example.university.model;
 
+import com.example.university.model.courses.Course;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,15 +10,9 @@ import java.util.List;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = "assistant")
-public class Teacher {
+@EqualsAndHashCode(exclude = "assistant", callSuper = false)
+public class Teacher extends Person{
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    private String firstName;
-    private String lastName;
     private String title;
 
     @Column(name = "teacher_student")

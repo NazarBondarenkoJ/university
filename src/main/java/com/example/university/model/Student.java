@@ -1,5 +1,7 @@
 package com.example.university.model;
 
+import com.example.university.model.courses.Course;
+import com.example.university.model.courses.CourseRating;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,15 +13,8 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"ratings", "course"})
-public class Student {
-
-    @Id
-    @GeneratedValue
-    private int id;
-
-    private String firstName;
-    private String lastName;
+@EqualsAndHashCode(exclude = {"ratings", "course"}, callSuper = false)
+public class Student extends Person{
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
@@ -33,4 +28,10 @@ public class Student {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Course course;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Diploma diploma;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private CourseWork courseWork;
 }

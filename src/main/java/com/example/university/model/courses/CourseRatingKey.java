@@ -1,4 +1,4 @@
-package com.example.university.model;
+package com.example.university.model.courses;
 
 import lombok.Data;
 
