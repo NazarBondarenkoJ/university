@@ -1,20 +1,19 @@
 package com.example.university.bootstrap;
 
 import com.example.university.model.*;
-import com.example.university.model.courses.Course;
 import com.example.university.model.courses.CourseRating;
 import com.example.university.model.courses.PracticalCourse;
-import com.example.university.service.UniversityDAOService;
+import com.example.university.service.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BootStrapLoader implements CommandLineRunner {
 
-    private final UniversityDAOService<Student> universityDAOService;
+    private final StudentService studentService;
 
-    public BootStrapLoader(UniversityDAOService<Student> universityDAOService) {
-        this.universityDAOService = universityDAOService;
+    public BootStrapLoader(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @Override
@@ -34,7 +33,7 @@ public class BootStrapLoader implements CommandLineRunner {
         rating.setRating(5);
 
         Assistant assistant = new Assistant();
-        assistant.setRole("Attorney");
+        assistant.setRole(Role.MAIN_ASSISTANT);
         assistant.setLastName("AssistantLastName");
         assistant.setFirstName("AssistantFirstName");
 
@@ -68,6 +67,7 @@ public class BootStrapLoader implements CommandLineRunner {
         student.setDiploma(diploma);
         student.setCourseWork(courseWork);
 
-        universityDAOService.save(student);
+        studentService.addStudent(student);
+
     }
 }

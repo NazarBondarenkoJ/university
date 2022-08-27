@@ -3,14 +3,18 @@ package com.example.university.model;
 import com.example.university.model.courses.Course;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @Entity
 @Data
 @EqualsAndHashCode(exclude = "assistant", callSuper = false)
+@ToString(exclude = {"students", "courses","assistant"})
 public class Teacher extends Person{
 
     private String title;

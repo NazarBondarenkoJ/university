@@ -4,6 +4,7 @@ import com.example.university.model.courses.Course;
 import com.example.university.model.courses.CourseRating;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"ratings", "course"}, callSuper = false)
+@ToString(exclude = {"books", "ratings", "teacher", "course", "diploma", "courseWork"})
 public class Student extends Person{
 
     @ManyToMany(cascade = CascadeType.ALL)

@@ -10,7 +10,8 @@ import javax.persistence.*;
 @EqualsAndHashCode(exclude = "teacher", callSuper = false)
 public class Assistant extends Person{
 
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Teacher teacher;
