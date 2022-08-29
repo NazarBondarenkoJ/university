@@ -83,7 +83,9 @@ public class BootStrapLoader implements CommandLineRunner {
         Session session = universityDAO.getEntityManager().unwrap(Session.class);
         SessionFactory sessionFactory = session.getSessionFactory();
         Session session1 = sessionFactory.openSession();
+        System.out.println("Fetch all Students from Session 1");
         session1.createQuery("from " + Student.class.getName(),Student.class).getResultList();
+        System.out.println("Fetch all Students from Session 2");
         Session session2 = sessionFactory.openSession();
         session2.createQuery("from " + Student.class.getName(),Student.class).getResultList();
 
